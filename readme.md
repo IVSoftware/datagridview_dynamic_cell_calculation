@@ -1,4 +1,4 @@
-Rather than interact with the `DataGridView` directly (which can be complex) you could instead make a class that implements `INotifyPropertyChanged` and keeps all of its internal calculations up-to-date at all times. Here is a simplified version of such a class that responds to changes of `Descricao`, `Medida` and PrecoFilhoSemIva`.
+Rather than interact with the `DataGridView` directly (which can be complex) you could instead make a class that implements `INotifyPropertyChanged` and keeps all of its internal calculations up-to-date at all times (which is easier). Here is a simplified version of such a class that responds to changes of `Descricao`, `Medida` and PrecoFilhoSemIva`.
 
 ***
 **A class that represents a row of data**
