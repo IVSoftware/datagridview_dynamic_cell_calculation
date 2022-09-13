@@ -69,11 +69,11 @@ class Articulo : INotifyPropertyChanged
 }
 ```
 
-![Change Iva]()
+![Change Iva](https://github.com/IVSoftware/datagridview_dynamic_cell_calculation/blob/master/datagridview_dynamic_cell_calculation/Screenshots/ss1.png)
 
-![Change Descricao]()
+![Change Descricao](https://github.com/IVSoftware/datagridview_dynamic_cell_calculation/blob/master/datagridview_dynamic_cell_calculation/Screenshots/ss2.png)
 
-![Change Preco]()
+![Change Preco](https://github.com/IVSoftware/datagridview_dynamic_cell_calculation/blob/master/datagridview_dynamic_cell_calculation/Screenshots/ss3.png)
 
 ***
 
