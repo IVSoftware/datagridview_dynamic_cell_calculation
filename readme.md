@@ -1,4 +1,4 @@
-Rather than interact with the `DataGridView` directly (which can be complex) you could instead make a class that implements `INotifyPropertyChanged` and keeps all of its internal calculations up-to-date at all times. Here is a simplified version of such a class that responds to changes of `Descricao`, `Medida` and `_precoFilhoSemIva`.
+Rather than interact with the `DataGridView` directly (which can be complex) you could instead make a class that implements `INotifyPropertyChanged` and keeps all of its internal calculations up-to-date at all times. Here is a simplified version of such a class that responds to changes of `Descricao`, `Medida` and PrecoFilhoSemIva`.
 
 ***
 **A class that represents a row of data**
@@ -78,6 +78,7 @@ Instances of this class are placed in a `BindingList` which is assigned to the `
 
 ***
 **Initializations**
+
 The only interaction that should be necessary with the DGV is to initialize the columns and bindings properly in the `MainForm` override for the `Load` event. This is also where we bind the combo box to a static value for Iva that can be used by the calculation for the row items.
 
 ```
@@ -109,8 +110,9 @@ private void initDataGridView()
             Descricao = $"Articulo {(char)('A' + (i - 1))}",
             Medida = i,
             PrecoFilhoSemIva = preco,
-        }); ;
+        });
     }
+    // Do a little column formatting
     foreach (DataGridViewColumn column in dgv_Filho.Columns)
     {
         switch (column.Name)
