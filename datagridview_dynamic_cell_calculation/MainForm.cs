@@ -27,7 +27,12 @@ namespace datagridview_dynamic_cell_calculation
             // Add one or more items to autogenerate the columns.
             for (int i = 1; i <= 5; i++)
             {
-                DataSource.Add(new Articulo { Descricao = $"Articulo {i}" });
+                DataSource.Add(new Articulo 
+                { 
+                    Descricao = $"Articulo {i}",
+                    Medida_1 = i,
+                    Medida_2 = (decimal)(i * 1.5),
+                });
             }
             foreach (DataGridViewColumn column in dgv_Filho.Columns)
             {
@@ -35,7 +40,7 @@ namespace datagridview_dynamic_cell_calculation
                 {
                     case nameof(Articulo.Descricao):
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        column.MinimumWidth = 100;
+                        column.MinimumWidth = 150;
                         break;
                     case nameof(Articulo.Check_Filho):
                         column.Width = 50;
@@ -83,20 +88,46 @@ namespace datagridview_dynamic_cell_calculation
     class Articulo
     {
         public bool Check_Filho { get; set; }
-        public string Descricao { get; set; }
+        string _descricao = string.Empty;
+        public string Descricao
+        {
+            get => _descricao;
+            set
+            {
+                if (!Equals(_descricao, value))
+                {
+                    _descricao = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public string ArtigoPai { get; set; }
         public string Descricao_Pai { get; set; }
         public decimal PrecoFilhoSemIva { get; set; }
         public decimal PrecoFilhoComIva { get; set; }
         public decimal Medida_1 { get; set; }
         public decimal Medida_2 { get; set; }
-        public string CodigoArtigo { get; set; }
+        public string CodigoArtigo { get; } = System.Guid.NewGuid().ToString().Substring(0, 10).ToUpper();
         public string CodigoArtigoFilho { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            switch (propertyName)
+            {
+                case nameof(Descricao):
+                    onDescricaoAlterar();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void onDescricaoAlterar()
+        {
+            Descricao_Pai = $"{Descricao} {Medida_1 + Medida_2}";
         }
     }
 }
