@@ -50,29 +50,27 @@ namespace datagridview_dynamic_cell_calculation
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv_Filho.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_Filho.Location = new System.Drawing.Point(12, 89);
+            this.dgv_Filho.Location = new System.Drawing.Point(12, 65);
             this.dgv_Filho.Name = "dgv_Filho";
             this.dgv_Filho.RowHeadersWidth = 62;
-            this.dgv_Filho.Size = new System.Drawing.Size(1054, 343);
+            this.dgv_Filho.Size = new System.Drawing.Size(1054, 267);
             this.dgv_Filho.TabIndex = 0;
             // 
             // cb_Iva
             // 
-            this.cb_Iva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cb_Iva.FormattingEnabled = true;
             this.cb_Iva.Items.AddRange(new object[] {
             "3.0%",
             "4.0%"});
-            this.cb_Iva.Location = new System.Drawing.Point(66, 23);
+            this.cb_Iva.Location = new System.Drawing.Point(66, 10);
             this.cb_Iva.Name = "cb_Iva";
             this.cb_Iva.Size = new System.Drawing.Size(182, 33);
             this.cb_Iva.TabIndex = 3;
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 26);
+            this.label3.Location = new System.Drawing.Point(12, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 25);
             this.label3.TabIndex = 1;
@@ -82,7 +80,7 @@ namespace datagridview_dynamic_cell_calculation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1078, 444);
+            this.ClientSize = new System.Drawing.Size(1078, 344);
             this.Controls.Add(this.cb_Iva);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgv_Filho);

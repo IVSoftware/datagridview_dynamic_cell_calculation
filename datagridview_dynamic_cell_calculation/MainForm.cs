@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
@@ -13,24 +14,13 @@ namespace datagridview_dynamic_cell_calculation
         }
 
         public static decimal Iva { get; private set; }
+        BindingList<Articulo> DataSource = new BindingList<Articulo>();
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             initDataGridView();
             initComboBox();
-        }
-
-        private void initComboBox()
-        {
-            cb_Iva.SelectedIndex = 0;
-            cb_Iva.SelectedIndexChanged += onIvaSelected;
-            onIvaSelected(cb_Iva, EventArgs.Empty);
-
-            void onIvaSelected(object sender, EventArgs e)
-            {
-                Iva = decimal.Parse(cb_Iva.Text.Replace("%", string.Empty)) / 100m;
-                dgv_Filho.Refresh();
-            }
         }
 
         private void initDataGridView()
@@ -45,7 +35,7 @@ namespace datagridview_dynamic_cell_calculation
             };
             // Add one or more items to autogenerate the columns.
             Random randomPriceGen = new Random(1);
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 3; i++)
             {
                 var preco = i == 1 ? 1.0m : (decimal)randomPriceGen.NextDouble() * 100;
                 DataSource.Add(new Articulo
@@ -76,7 +66,31 @@ namespace datagridview_dynamic_cell_calculation
             }
         }
 
-        BindingList<Articulo> DataSource = new BindingList<Articulo>();
+        private void initComboBox()
+        {
+            cb_Iva.SelectedIndex = 0;
+            cb_Iva.SelectedIndexChanged += onIvaSelected;
+            cb_Iva.KeyDown += (sender, e) =>
+            {
+                if( e.KeyData == Keys.Enter)
+                {
+                    e.Handled = e.SuppressKeyPress = true;
+                }
+                onIvaSelected(sender, e);
+            };
+            onIvaSelected(cb_Iva, EventArgs.Empty);
+
+            void onIvaSelected(object sender, EventArgs e)
+            {
+                if (decimal.TryParse(cb_Iva.Text.Replace("%", string.Empty), out decimal iva))
+                {
+                    Iva = iva / 100m;
+                    dgv_Filho.Refresh();
+                    cb_Iva.BackColor = SystemColors.Window;
+                }
+                else cb_Iva.BackColor = Color.LightSalmon;
+            }
+        }
     }
     class Articulo : INotifyPropertyChanged
     {

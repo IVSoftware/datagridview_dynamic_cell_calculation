@@ -68,9 +68,18 @@ class Articulo : INotifyPropertyChanged
     }
 }
 ```
+
+![Change Iva]()
+
+![Change Descricao]()
+
+![Change Preco]()
+
 ***
 
-Instances of this class are placed in a `BindingList` which is assigned to the `DataSource` property of `dgv_Filho`. The only interaction that should be necessary with the DGV is to initialize the columns and bindings properly in the `MainForm` override for the `Load` event.
+Instances of this class are placed in a `BindingList` which is assigned to the `DataSource` property of `dgv_Filho`. The only interaction that should be necessary with the DGV is to initialize the columns and bindings properly in the `MainForm` override for the `Load` event. This is also where we bind the combo box to a static value for Iva that can be used by the calculation for the row items.
+
+
 
 
 
