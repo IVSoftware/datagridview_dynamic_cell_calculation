@@ -10,25 +10,35 @@ namespace datagridview_dynamic_cell_calculation
         public MainForm()
         {
             InitializeComponent();
-            cb_Iva.SelectedIndex = 0;
-            cb_Iva.SelectedIndexChanged += onIvaSelected;
-            onIvaSelected(cb_Iva, EventArgs.Empty);
-        }
-
-        private void onIvaSelected(object sender, EventArgs e)
-        {
-            Iva = decimal.Parse(cb_Iva.Text.Replace("%", string.Empty)) / 100m;
-            dgv_Filho.Refresh();
         }
 
         public static decimal Iva { get; private set; }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            initDataGridView();
+            initComboBox();
+        }
+
+        private void initComboBox()
+        {
+            cb_Iva.SelectedIndex = 0;
+            cb_Iva.SelectedIndexChanged += onIvaSelected;
+            onIvaSelected(cb_Iva, EventArgs.Empty);
+
+            void onIvaSelected(object sender, EventArgs e)
+            {
+                Iva = decimal.Parse(cb_Iva.Text.Replace("%", string.Empty)) / 100m;
+                dgv_Filho.Refresh();
+            }
+        }
+
+        private void initDataGridView()
+        {
             dgv_Filho.DataSource = DataSource;
             DataSource.ListChanged += (sender, e) =>
             {
-                if(e.ListChangedType == ListChangedType.ItemChanged)
+                if (e.ListChangedType == ListChangedType.ItemChanged)
                 {
                     dgv_Filho.Refresh();
                 }
@@ -65,6 +75,7 @@ namespace datagridview_dynamic_cell_calculation
                 }
             }
         }
+
         BindingList<Articulo> DataSource = new BindingList<Articulo>();
     }
     class Articulo : INotifyPropertyChanged
